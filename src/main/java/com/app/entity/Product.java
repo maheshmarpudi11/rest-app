@@ -1,9 +1,17 @@
 package com.app.entity;
 
+import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Product {
 	
+	@JsonIgnore
 	private int productId;
+	
+	@NotEmpty(message="Product name can't be null or empty.")
 	private String productName;
+	
 	private String productDesc;
 	
 	public Product(int productId, String productName, String productDesc) {

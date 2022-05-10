@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.validation.constraints.Pattern;
+
 import org.springframework.stereotype.Service;
 
 import com.app.entity.Product;
@@ -51,6 +53,13 @@ public class ProductService {
 		productMap.remove(name);
 		
 		return "Product is removed with name : "+name ;
+	}
+
+	public Product searchByName(String name) {
+		
+		Product product = productMap.get(name);
+		
+		return product;
 	}
 	
 	
