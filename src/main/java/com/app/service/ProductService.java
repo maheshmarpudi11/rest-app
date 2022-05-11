@@ -10,30 +10,31 @@ import javax.validation.constraints.Pattern;
 
 import org.springframework.stereotype.Service;
 
-import com.app.entity.Product;
+import com.app.dto.ProductDTO;
 
 @Service
 public class ProductService {
 
-	static Map<String,Product> productMap;
 	
-	static {
-		productMap = new HashMap<String,Product>();
-		productMap.put("Iphone", new Product(1, "Iphone", "iphone desc"));
-		productMap.put("OnePlus", new Product(2, "OnePlus", "OnePlus desc"));
-		productMap.put("Samsung", new Product(3, "Samsung", "Samsung desc"));
-	
-	}
+	  static Map<String,ProductDTO> productMap;
+	  
+	  static { productMap = new HashMap<String,ProductDTO>();
+	  productMap.put("Iphone", new ProductDTO(1, "Iphone", "iphone desc"));
+	  productMap.put("OnePlus", new ProductDTO(2, "OnePlus", "OnePlus desc"));
+	  productMap.put("Samsung", new ProductDTO(3, "Samsung", "Samsung desc"));
+	  
+	  }
+	 
 
-	public Product createProduct(Product product) {
+	public ProductDTO createProduct(ProductDTO product) {
 		productMap.put(product.getProductName(), product);
 		
 		return productMap.get(product.getProductName());
 	}
 
-	public List<Product> getAllProducts() {
+	public List<ProductDTO> getAllProducts() {
 
-		List<Product> products = new ArrayList();
+		List<ProductDTO> products = new ArrayList();
 		Set<String> keys = productMap.keySet();
 		
 		for (String key : keys) {
@@ -43,7 +44,7 @@ public class ProductService {
 		return products;
 	}
 
-	public Product updateProduct(Product product) {
+	public ProductDTO updateProduct(ProductDTO product) {
 		productMap.put(product.getProductName(), product);
 		
 		return productMap.get(product.getProductName());
@@ -55,9 +56,9 @@ public class ProductService {
 		return "Product is removed with name : "+name ;
 	}
 
-	public Product searchByName(String name) {
+	public ProductDTO searchByName(String name) {
 		
-		Product product = productMap.get(name);
+		ProductDTO product = productMap.get(name);
 		
 		return product;
 	}

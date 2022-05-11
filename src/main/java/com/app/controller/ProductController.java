@@ -18,9 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.entity.Product;
+import com.app.dto.ProductDTO;
 import com.app.exception.RecordNotFound;
 import com.app.service.ProductService;
+import com.app.service.ProductServiceRepo;
 
 @Validated
 // @Controller - MVC
@@ -28,33 +29,37 @@ import com.app.service.ProductService;
 @RequestMapping("/product")
 public class ProductController {
 	
+	//@Autowired
+	//private ProductService productService;
+	
 	@Autowired
-	private ProductService productService;
+	private ProductServiceRepo productService;
+	
 	
 
 	// @RequestMapping(value="/create", requestMethod=GET)
 	@PostMapping(value="/create")  
-	public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
+	public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO product) {
 		
-		Product savedProduct = productService.createProduct(product);
+		ProductDTO savedProduct = productService.createProduct(product);
 		
-		return new ResponseEntity<Product>(savedProduct, HttpStatus.CREATED);
+		return new ResponseEntity<ProductDTO>(savedProduct, HttpStatus.CREATED);
 	}
 	
 	
 	@GetMapping("/products")  
-	public ResponseEntity<List<Product>> getAllProducts() {
+	public ResponseEntity<List<ProductDTO>> getAllProducts() {
 		
-		List<Product> savedProductList = productService.getAllProducts();
+		List<ProductDTO> savedProductList = productService.getAllProducts();
 		
-		return new ResponseEntity<List<Product>>(savedProductList,HttpStatus.OK);
+		return new ResponseEntity<List<ProductDTO>>(savedProductList,HttpStatus.OK);
 	}
 	
 	
 	@PutMapping("/update")  
-	public Product updateProduct(@RequestBody Product product) {
+	public ProductDTO updateProduct(@RequestBody ProductDTO product) {
 		
-		Product savedProduct = productService.updateProduct(product);
+		ProductDTO savedProduct = productService.updateProduct(product);
 		return savedProduct;
 	}
 	
@@ -66,10 +71,10 @@ public class ProductController {
 	}
 	
 	@GetMapping("/searchByName/{name}")  
-	public Product searchByName(@PathVariable("name")
+	public ProductDTO searchByName(@PathVariable("name")
 		@Pattern(regexp ="^[A-Za-z]\\w{3,10}$", message = "path variable name should contain only charaters between min 5 to max 10") String name) {
 		 
-		Product response = productService.searchByName(name);
+		ProductDTO response = productService.searchByName(name);
 		
 		if(response == null)
 		{

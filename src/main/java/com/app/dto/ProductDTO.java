@@ -1,10 +1,10 @@
-package com.app.entity;
+package com.app.dto;
 
 import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Product {
+public class ProductDTO {
 	
 	@JsonIgnore
 	private int productId;
@@ -14,13 +14,13 @@ public class Product {
 	
 	private String productDesc;
 	
-	public Product(int productId, String productName, String productDesc) {
+	public ProductDTO(int productId, String productName, String productDesc) {
 		this.productId = productId;
 		this.productName = productName;
 		this.productDesc = productDesc;
 	}
 
-	public Product() {
+	public ProductDTO() {
 	}
 
 	public int getProductId() {
