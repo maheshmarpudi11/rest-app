@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -40,7 +41,7 @@ public class ProductServiceRepo {
 
 	public List<ProductDTO> getAllProducts() {
 		// TODO Auto-generated method stub
-		return null;
+		return Arrays.asList(new ProductDTO(1, "iphone", "iphone Desc"));
 	}
 
 	public ProductDTO updateProduct(ProductDTO product) {

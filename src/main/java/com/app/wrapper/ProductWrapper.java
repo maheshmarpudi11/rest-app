@@ -1,6 +1,5 @@
 package com.app.wrapper;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import com.app.dto.ProductDTO;

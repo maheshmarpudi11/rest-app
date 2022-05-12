@@ -9,7 +9,8 @@ import com.app.entity.ProductEntity;
 import com.app.repository.ProductRepository;
 
 @SpringBootApplication
-public class RestAppApplication implements CommandLineRunner{
+public class RestAppApplication //implements CommandLineRunner
+{
 
 	public static void main(String[] args) {
 		SpringApplication.run(RestAppApplication.class, args);
@@ -18,17 +19,17 @@ public class RestAppApplication implements CommandLineRunner{
 	@Autowired
 	private ProductRepository productRepo;
 
-	@Override
-	public void run(String... args) throws Exception {
-		
-		ProductEntity product = new ProductEntity();
-		product.setpName("iphone");
-		product.setpDesc("iphone desc");
-		product.setpCount(10);
-		
-		
-		
-	}
+	/*
+	 * @Override public void run(String... args) throws Exception {
+	 * 
+	 * ProductEntity product = new ProductEntity(); product.setpName("iphone");
+	 * product.setpDesc("iphone desc"); product.setpCount(10);
+	 * productRepo.save(product);
+	 * 
+	 * 
+	 * 
+	 * }
+	 */
 
 }
 

@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.app.dto.ApplicationResponseDTO;
+import com.app.dto.ErrorResponse;
+
 
 // Custom Exception :  https://examples.javacodegeeks.com/spring-boot-bean-validation-example/#:~:text=The%20Bean%20Validation%20API%20is,built%2Din%20constraints%20are%20inadequate.
 
@@ -37,18 +40,38 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 			errors.put(((FieldError)error).getField() , error.getDefaultMessage());
 		}
 		
-		return new ResponseEntity<Object>(errors,status);
+		
+		 ApplicationResponseDTO appResponse = new ApplicationResponseDTO();
+		    
+		    ErrorResponse errorResponse = new ErrorResponse();
+		    errorResponse.setErrrors(errors);
+		    errorResponse.setErrorCode("400");
+		    errorResponse.setErrorDesc("invalid inputs.");
+		    
+		    appResponse.setErrorDetails(errorResponse);
+		    
+		    return new ResponseEntity<Object>(appResponse,HttpStatus.BAD_REQUEST);
+		
 	}
 
 	@ExceptionHandler({ ConstraintViolationException.class })
-	public ResponseEntity<Object> handleConstraintViolation( ConstraintViolationException ex, WebRequest request) {
+	public ResponseEntity<ApplicationResponseDTO> handleConstraintViolation( ConstraintViolationException ex, WebRequest request) {
 	    List<String> errors = new ArrayList<String>();
 	    
 	    for (ConstraintViolation<?> violation : ex.getConstraintViolations()) {
 	        errors.add(violation.getMessage());
 	    }
 
-	    return new ResponseEntity<Object>(errors,HttpStatus.BAD_REQUEST);
+	    ApplicationResponseDTO appResponse = new ApplicationResponseDTO();
+	    
+	    ErrorResponse errorResponse = new ErrorResponse();
+	    errorResponse.setErrrors(errors);
+	    errorResponse.setErrorCode("400");
+	    errorResponse.setErrorDesc("invalid inputs.");
+	    
+	    appResponse.setErrorDetails(errorResponse);
+	    
+	    return new ResponseEntity<ApplicationResponseDTO>(appResponse,HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(RecordNotFound.class)

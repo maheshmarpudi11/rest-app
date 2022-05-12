@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.ApplicationResponseDTO;
 import com.app.dto.ProductDTO;
 import com.app.exception.RecordNotFound;
 import com.app.service.ProductService;
@@ -34,7 +35,6 @@ public class ProductController {
 	
 	@Autowired
 	private ProductServiceRepo productService;
-	
 	
 
 	// @RequestMapping(value="/create", requestMethod=GET)
@@ -83,6 +83,20 @@ public class ProductController {
 		
 		return response;
 	}
+	
+	@GetMapping("/details")
+	public ApplicationResponseDTO getDetails() {
+		
+		ApplicationResponseDTO response = new ApplicationResponseDTO();
+		
+		List<ProductDTO> productList = productService.getAllProducts();
+		
+		response.setProductList(productList);
+		
+		return response;
+	}
+	 	
+	
 	
 	
 }
