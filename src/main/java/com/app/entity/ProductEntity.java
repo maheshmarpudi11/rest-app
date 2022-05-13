@@ -1,5 +1,6 @@
 package com.app.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,60 +13,57 @@ public class ProductEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int pId;
 	
-	private String pName; // pname
+	@Column(name = "pId")
+	private int productId;
 	
-	private String pDesc;
+	private String productName; // pname
+
+	private String productDesc;
 	
-	private int pCount;
+	private int productCount;
 
 	public ProductEntity() {
 	
 	}
 
-	public ProductEntity(int pId, String pName, String pDesc, int pCount) {
-		this.pId = pId;
-		this.pName = pName;
-		this.pDesc = pDesc;
-		this.pCount = pCount;
+	public ProductEntity(int productId, String productName, String productDesc, int productCount) {
+		this.productId = productId;
+		this.productName = productName;
+		this.productDesc = productDesc;
+		this.productCount = productCount;
 	}
 
-	public int getpId() {
-		return pId;
+	public int getProductId() {
+		return productId;
 	}
 
-	public void setpId(int pId) {
-		this.pId = pId;
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
 
-	public String getpName() {
-		return pName;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setpName(String pName) {
-		this.pName = pName;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
-	public String getpDesc() {
-		return pDesc;
+	public String getProductDesc() {
+		return productDesc;
 	}
 
-	public void setpDesc(String pDesc) {
-		this.pDesc = pDesc;
+	public void setProductDesc(String productDesc) {
+		this.productDesc = productDesc;
 	}
 
-	public int getpCount() {
-		return pCount;
+	public int getProductCount() {
+		return productCount;
 	}
 
-	public void setpCount(int pCount) {
-		this.pCount = pCount;
+	public void setProductCount(int productCount) {
+		this.productCount = productCount;
 	}
 
-	@Override
-	public String toString() {
-		return "ProductEntity [pId=" + pId + ", pName=" + pName + ", pDesc=" + pDesc + ", pCount=" + pCount + "]";
-	}
-	
 }

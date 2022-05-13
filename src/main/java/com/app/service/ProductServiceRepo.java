@@ -1,63 +1,82 @@
 package com.app.service;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
-
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.ProductDTO;
 import com.app.entity.ProductEntity;
 import com.app.repository.ProductRepository;
-import com.app.wrapper.ProductWrapper;
 
 @Service
 public class ProductServiceRepo {
 
 	@Autowired
 	private ProductRepository productRepo;
-	
-	@Autowired
-	private ProductWrapper productWrapper;
-	
-	
+		
 	public ProductDTO createProduct(ProductDTO productDTO) {
 		
-		ProductEntity productEntity = productWrapper.convertDTOtoEntity(productDTO);
+		ProductEntity productEntity = new ProductEntity();
+		ProductDTO resProductDTO = new ProductDTO();
 		
-		System.out.println("productEntity :: "+productEntity);
-	
+		BeanUtils.copyProperties(productDTO,productEntity);
 		ProductEntity productEntityRes = productRepo.save(productEntity);
+		BeanUtils.copyProperties(productEntityRes,resProductDTO);
 		
-		System.out.println("productEntityRes :: "+productEntityRes);
-		
-		ProductDTO savedProduct = productWrapper.convertEntityToDTO(productEntityRes);
-		
-		return savedProduct;
+		return resProductDTO;
 	}
 
 	public List<ProductDTO> getAllProducts() {
-		// TODO Auto-generated method stub
-		return Arrays.asList(new ProductDTO(1, "iphone", "iphone Desc"));
+		
+		
+		List<ProductEntity> listEntity = productRepo.findAll();
+		
+		List<ProductDTO> listDto = new ArrayList<>();
+		
+		for (ProductEntity entity : listEntity) {
+			
+			ProductDTO dto = new ProductDTO();
+			
+			BeanUtils.copyProperties(entity,dto);
+			
+			listDto.add(dto);
+			
+		}
+		
+		return listDto;
 	}
 
 	public ProductDTO updateProduct(ProductDTO product) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ProductEntity productEntity = new ProductEntity();
+		ProductDTO resProductDTO = new ProductDTO();
+		
+		BeanUtils.copyProperties(product,productEntity);
+		ProductEntity productEntityRes = productRepo.save(productEntity);
+		BeanUtils.copyProperties(productEntityRes,resProductDTO);
+		
+		
+		return resProductDTO;
 	}
 
-	public String deleteProduct(@Pattern(regexp = "^[A-Za-z]") String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public String deleteProduct(int id) {
+		
+		productRepo.deleteById(id);
+		
+		return "Product is delete with id :"+id;
 	}
 
-	public ProductDTO searchByName(
-			@Pattern(regexp = "^[A-Za-z]\\w{3,10}$", message = "path variable name should contain only charaters between min 5 to max 10") String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductDTO searchByName(String name) {
+		ProductDTO resProductDTO = new ProductDTO();
+		
+		ProductEntity entity = productRepo.findByProductName(name);
+		BeanUtils.copyProperties(entity,resProductDTO);
+		
+		
+		return resProductDTO;
 	}
 	
 	
