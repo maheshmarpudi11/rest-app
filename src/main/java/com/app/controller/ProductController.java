@@ -64,7 +64,7 @@ public class ProductController {
 	}
 	
 	@DeleteMapping("/delete/{id}")  
-	public String deleteProduct(@PathVariable("id") @Pattern(regexp ="^[0-9]") int id) {
+	public String deleteProduct(@PathVariable(required = true ,name = "id") int id) {
 		
 		String response = productService.deleteProduct(id);
 		return response;

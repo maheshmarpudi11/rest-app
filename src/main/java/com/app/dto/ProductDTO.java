@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ProductDTO {
 	
-	@JsonIgnore
+	//@JsonIgnore
 	private int productId;
 	
 	@NotEmpty(message="Product name can't be null or empty.")
