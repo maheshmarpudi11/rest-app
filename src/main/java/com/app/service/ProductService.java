@@ -19,9 +19,9 @@ public class ProductService {
 	  static Map<String,ProductDTO> productMap;
 	  
 	  static { productMap = new HashMap<String,ProductDTO>();
-	  productMap.put("Iphone", new ProductDTO(1, "Iphone", "iphone desc"));
-	  productMap.put("OnePlus", new ProductDTO(2, "OnePlus", "OnePlus desc"));
-	  productMap.put("Samsung", new ProductDTO(3, "Samsung", "Samsung desc"));
+	  productMap.put("Iphone", new ProductDTO(1, "Iphone", "iphone desc","20000",10));
+	  productMap.put("OnePlus", new ProductDTO(2, "OnePlus", "OnePlus desc","30000",5));
+	  productMap.put("Samsung", new ProductDTO(3, "Samsung", "Samsung desc","15000",15));
 	  
 	  }
 	 

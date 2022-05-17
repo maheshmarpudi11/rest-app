@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -97,6 +98,30 @@ public class ProductController {
 	}
 	 	
 	
+	@GetMapping(value = {"/searchBy/{name}","/searchBy/{name}/{cost}"})  
+	public List<ProductDTO> searchByName(@PathVariable("name") String name, @PathVariable(name = "cost", required = false) String cost ) {
+		
+		List<ProductDTO> productList = new ArrayList();
+		
+		if(name != null && cost !=null) {
+			System.out.println("name : "+name +" cost : "+cost);
+			
+			productList = productService.searchBy(name,cost);
+			
+			
+		}
+		else if(name != null) {
+			ProductDTO response = productService.searchByName(name);
+			productList.add(response);
+		}
+		
 	
+		if(productList.size() < 0)
+		{
+			throw new RecordNotFound("Record not found with this product :" +name);
+		}
+		
+		return productList;
+	}
 	
 }
