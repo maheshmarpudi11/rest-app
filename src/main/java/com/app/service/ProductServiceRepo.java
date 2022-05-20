@@ -98,4 +98,11 @@ public class ProductServiceRepo {
 		return listDto;
 	}
 
+	public ProductDTO findProductById(int id) {
+		ProductDTO resProductDTO = new ProductDTO();
+		ProductEntity productEntity = productRepo.findById(id).get();
+		BeanUtils.copyProperties(productEntity, resProductDTO);
+		return resProductDTO;
+	}
+
 }

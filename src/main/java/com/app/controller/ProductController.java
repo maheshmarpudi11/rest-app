@@ -124,4 +124,18 @@ public class ProductController {
 		return productList;
 	}
 	
+	
+	@GetMapping("/findById/{id}")
+	public ProductDTO findProductById(@PathVariable("id") int id) {
+		
+		ProductDTO product = productService.findProductById(id);
+		
+		return product;
+	}
+	
+	
+	
+	
+	
+	
 }
