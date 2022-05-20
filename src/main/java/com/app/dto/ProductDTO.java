@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class ProductDTO {
 
 	// @JsonIgnore
-	private int productId;
+	private Integer productId;
 
 	@NotEmpty(message = "Product name can't be null or empty.")
 	private String productName;
@@ -20,7 +20,7 @@ public class ProductDTO {
 	
 	
 
-	public ProductDTO(int productId, String productName, String productDesc,String productCost, int productCount) {
+	public ProductDTO(Integer productId, String productName, String productDesc,String productCost, int productCount) {
 		this.productId = productId;
 		this.productName = productName;
 		this.productDesc = productDesc;
@@ -31,11 +31,11 @@ public class ProductDTO {
 	public ProductDTO() {
 	}
 
-	public int getProductId() {
+	public Integer getProductId() {
 		return productId;
 	}
 
-	public void setProductId(int productId) {
+	public void setProductId(Integer productId) {
 		this.productId = productId;
 	}
 

@@ -15,7 +15,7 @@ public class ProductEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	
 	@Column(name = "pId")
-	private int productId;
+	private Integer productId;
 	
 	private String productName; // pname
 
@@ -29,7 +29,7 @@ public class ProductEntity {
 	
 	}
 
-	public ProductEntity(int productId, String productName, String productDesc,String productCost, int productCount) {
+	public ProductEntity(Integer productId, String productName, String productDesc,String productCost, int productCount) {
 		this.productId = productId;
 		this.productName = productName;
 		this.productDesc = productDesc;
@@ -37,11 +37,11 @@ public class ProductEntity {
 		this.productCount = productCount;
 	}
 
-	public int getProductId() {
+	public Integer getProductId() {
 		return productId;
 	}
 
-	public void setProductId(int productId) {
+	public void setProductId(Integer productId) {
 		this.productId = productId;
 	}
 
