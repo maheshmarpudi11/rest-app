@@ -1,0 +1,13 @@
+Spring Profiles
+---------------
+
+https://mkyong.com/maven/how-to-install-maven-in-windows/
+
+mvn clean package // delete target folder and package you project and generate jar/war file
+
+mvn clean package -Pqa
+
+cd target 
+java -jar <application-name.jar>  --spring.profiles.active=qa   // execute jar file from command prompt
+
+mvn spring-boot:run  // to run spring boot application from cmd.
