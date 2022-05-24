@@ -1,25 +1,23 @@
 package com.app;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.app.repository.ProductRepository;
 
 @SpringBootApplication
 public class RestAppApplication //implements CommandLineRunner
 {
+	private static final Logger LOGGER = LoggerFactory.getLogger(RestAppApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(RestAppApplication.class, args);
 		
-		SpringApplication springApplication = new SpringApplication();
-		
-		//springApplication.setAdditionalProfiles("qa");
+		LOGGER.info("Application is started..!");
 	}
 	
-	@Autowired
-	private ProductRepository productRepo;
+	//@Autowired
+	//private ProductRepository productRepo;
 
 	/*
 	 * @Override public void run(String... args) throws Exception {

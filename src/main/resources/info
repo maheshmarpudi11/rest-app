@@ -11,3 +11,75 @@ cd target
 java -jar <application-name.jar>  --spring.profiles.active=qa   // execute jar file from command prompt
 
 mvn spring-boot:run  // to run spring boot application from cmd.
+
+
+Spring Boot Actuator
+--------------------
+1. Actuator brings production-ready features to our application, It give access to Monitoring our app, gathering metrics.
+	Ex : health, metrics, info, dump, env, etc
+
+Steps to Integrate
+- - - - - - - - - 
+
+1. Add Dependency
+	<dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-actuator</artifactId>
+	</dependency>
+	
+2.  By default two end-point ' /health and /info ' are enabled from 2.x onwards 
+
+3. How to enable other end-point?
+	management.endpoints.web.exposure.include=*.
+	management.endpoint.shutdown.enabled=true
+	endpoints.shutdown.enabled=true
+
+	Reference # https://www.baeldung.com/spring-boot-actuators
+
+
+Logging 
+-------
+- logging request flow for tracking error, defects at runtime
+- sl4f is the default logging framework added in Spring Boot Application.
+
+# Default Logger sl4j Configuration
+logging.level.org.springframework=INFO
+logging.level.com.app=DEBUG
+logging.pattern.console=%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n
+logging.file.path=logs
+logging.file.name=${logging.file.path}/log.log
+logging.pattern.file=%d{dd-MM-yyyy  HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n
+
+Reference # https://howtodoinjava.com/spring-boot2/logging/logging-application-properties/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

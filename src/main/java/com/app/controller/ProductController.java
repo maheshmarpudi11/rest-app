@@ -6,6 +6,8 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.dto.ApplicationResponseDTO;
 import com.app.dto.ProductDTO;
 import com.app.exception.RecordNotFound;
-import com.app.service.ProductService;
 import com.app.service.ProductServiceRepo;
 
 @Validated
@@ -30,6 +31,8 @@ import com.app.service.ProductServiceRepo;
 @RestController // @Controller + @ResponseBody
 @RequestMapping("/product")
 public class ProductController {
+	
+	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 	
 	//@Autowired
 	//private ProductService productService;
@@ -42,8 +45,11 @@ public class ProductController {
 	@PostMapping(value="/create")  
 	public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO product) {
 		
+		LOGGER.debug("ProductController -> createProduct() starts.");
+		
 		ProductDTO savedProduct = productService.createProduct(product);
 		
+		LOGGER.debug("ProductController -> createProduct() ends.");
 		return new ResponseEntity<ProductDTO>(savedProduct, HttpStatus.CREATED);
 	}
 	
@@ -51,7 +57,11 @@ public class ProductController {
 	@GetMapping("/products")  
 	public ResponseEntity<List<ProductDTO>> getAllProducts() {
 		
+		LOGGER.debug("ProductController -> getAllProducts() starts.");
+		
 		List<ProductDTO> savedProductList = productService.getAllProducts();
+		
+		LOGGER.debug("ProductController -> getAllProducts() ends.");
 		
 		return new ResponseEntity<List<ProductDTO>>(savedProductList,HttpStatus.OK);
 	}
