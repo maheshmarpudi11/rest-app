@@ -30,7 +30,7 @@ Steps to Integrate
 2.  By default two end-point ' /health and /info ' are enabled from 2.x onwards 
 
 3. How to enable other end-point?
-	management.endpoints.web.exposure.include=*.
+	management.endpoints.web.exposure.include=*
 	management.endpoint.shutdown.enabled=true
 	endpoints.shutdown.enabled=true
 
