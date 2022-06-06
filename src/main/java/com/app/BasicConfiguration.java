@@ -39,7 +39,7 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
 
 		).and();
 
-		http.authorizeRequests().antMatchers("**/actuator/**").hasAnyRole("SUPER")
+		http.authorizeRequests().antMatchers("/actuator/**").hasAnyRole("SUPER")
 				.antMatchers("/product/create", "/product/delete/**").hasAnyRole("ADMIN")
 				.antMatchers("/product/update", "/product/products", "/product/searchByName/**,/product/searchBy/**").hasAnyRole("USER")
 				.antMatchers("/authenticate").permitAll()
